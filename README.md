@@ -1,38 +1,38 @@
-Role Name
+vector-role
 =========
 
-A brief description of the role goes here.
+Роль по установке и настройке Vector, созданная в учебных целях.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Роль написана для EL-систем (CentOS 8 Stream, CentOS 9 Stream)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable | Default value | Description |
+-----------|---------------|------------
+| vector_version | 0.30.0 | Определяет версию Vector для установки |
+| vector_data_path | /var/lib/vector | Определяет путь, куда Vector будет писать данные
+| vector_user | cloud-user | Определяет пользователя для запуска сервиса vector.service
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Tags
+----
 
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
+| Tag | Description |
+|-----|-------------|
+| download_vector_distrib | Таск скачивает указанную версию Vector в подготовленную папку |
+| unpack_vector | Таск рапаковывает Vector в указанную папку |
+| copy_vector_and_install | Таск копирует исполняемый файл Vector в папку с исполняемыми файлами в операционной системе |
+| copy_vector_conf | Таск создает конфигурационный файл `vector.yaml` по указанному шаблону |
+| create_vector_service | Таск создает сервис `vector.service`, используя шаблонный файл |
+| check_vector_version | Таск проверяет корректность установки нужной версии Vector |
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Author: Kirill Shapovalov
+
+Group: netology-devops-25
