@@ -50,6 +50,6 @@
 - name: Install Vector | Check Vector install
   ansible.builtin.command: "vector --version"
   register: result
-  changed_when: '"0.30.0" not in result.stdout'
+  changed_when: "{{ vector_version }} not in result.stdout"
   tags:
     - check_vector_version
