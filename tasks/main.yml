@@ -43,13 +43,16 @@
     src: "./templates/vector.service.j2"
     dest: "/etc/systemd/system/vector.service"
     mode: "0755"
-  notify: Restart Vector
+  notify: Start Vector
   tags:
     - create_vector_service
 
 - name: Install Vector | Check Vector install
-  ansible.builtin.command: "vector --version"
+  ansible.builtin.command: vector --version
   register: result
-  changed_when: "{{ vector_version }} not in result.stdout"
+  failed_when: result.rc != 0
+  changed_when: result.rc == 0
+  ignore_errors: true
+  when: ansible_virtualization_type != "docker"
   tags:
     - check_vector_version

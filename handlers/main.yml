@@ -1,7 +1,8 @@
 ---
-- name: Restart Vector
+- name: Start Vector
   ansible.builtin.systemd:
     name: vector
-    state: restarted
+    state: started
     daemon_reload: true
   listen: restart-vector
+  when: ansible_virtualization_type != "docker"

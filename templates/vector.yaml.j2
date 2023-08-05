@@ -1,25 +1,23 @@
 ---
-vector_config:
+sources:
+  file_source:
+    type: file
+    ignore_older: 3600
+    include:
+      - /var/log/**/*.log
+    read_from: beginning
 
-  sources:
-    file_source:
-      type: file
-      ignore_older_secs: 3600
-      include:
-        - /var/log/**/*.log
-      read_from: beginning
-
-  sinks:
-    to_clickhouse:
-      type: clickhouse
-      inputs:
-        - file_source
-      endpoints: http://clichouse-node-0:8123
-      databases: logs
-      table: logs
-      auth:
-        password: 1qaz!QAZ
-        user: vector
-        strategy: basic
-      skip_unknown_fields: true
-      compression: gzip
+sinks:
+  to_clickhouse:
+    type: clickhouse
+    inputs:
+      - file_source
+    endpoint: http://clichouse-node-0:8123
+    database: "logs"
+    table: "logs"
+    auth:
+      password: "1qaz!QAZ"
+      user: "vector"
+      strategy: "basic"
+    skip_unknown_fields: true
+    compression: gzip

@@ -1,4 +1,6 @@
 galaxy_info:
+  role_name: vector_role
+  namespace: my_vector_role
   author: Kirill Shapovalov
   description: Install and config Vector
   company: Home
