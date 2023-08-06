@@ -5,4 +5,4 @@
     state: started
     daemon_reload: true
   listen: restart-vector
-  when: ansible_virtualization_type != "docker"
+  when: ansible_virtualization_type not in ['docker', 'podman', 'container', 'containerd']
